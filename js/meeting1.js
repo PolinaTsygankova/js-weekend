@@ -125,6 +125,7 @@ function checkString(){
   return isCheck;
 }
 console.log(checkString());
+ 
 
 
 // const foo = null ?? 'default string';
