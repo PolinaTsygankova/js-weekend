@@ -20,17 +20,21 @@ const petsList = [
     { kind: "Hedgehog", year: 2019, name: "elizabeth" },
     { kind: "Hamster", year: 2020, name: "alcatraz" },
 ];
+ 
 
 function generatePetCard(kind, year, name){
    
     return `<li class="petCard">
     <h2>${name} ${year}</h2>
       <p>Тварина ${kind} - ${year} рік народження. Вік тварини -  ${agetostr(getAge(year))}.</p>
+      <button type='button' class='btn'>Удалить карточку</button>
      </li>`
  }
 
- let petsOl = document.createElement("ol");
- petsOl = petsList.reduce((acc, {kind, year, name}) => {
+ const petsOl = document.querySelector(".petsContainer");
+ 
+ 
+ const petsOlHTML = petsList.reduce((acc, {kind, year, name}) => {
     acc += generatePetCard(kind, year, name);
     return acc; 
  }, "");
@@ -41,6 +45,8 @@ function getAge(year){
     const age = currentYear - year;
     return age;
 }
+
+petsOl.insertAdjacentHTML("beforebegin", petsOlHTML);
 
     function agetostr(age) {
         let txt;
@@ -61,3 +67,16 @@ function getAge(year){
         return age+" "+txt;
     }
 
+  petsOl.addEventListener("click", handleClickBtn);
+
+  function handleClickBtn(event){
+    console.log(petsOl);
+       const currentBtn = event.target.closest(".btn");
+       console.log(currentBtn);
+        if (currentBtn.nodeName !== "BUTTON") {
+            return;
+        } else {
+            currentBtn.closest(".petCard").remove();
+            
+        }
+  }
