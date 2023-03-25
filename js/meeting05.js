@@ -46,7 +46,7 @@ function getAge(year){
     return age;
 }
 
-petsOl.insertAdjacentHTML("beforebegin", petsOlHTML);
+petsOl.insertAdjacentHTML("beforeend", petsOlHTML);
 
     function agetostr(age) {
         let txt;
@@ -79,4 +79,4 @@ petsOl.insertAdjacentHTML("beforebegin", petsOlHTML);
             currentBtn.closest(".petCard").remove();
             
         }
-  }
+  };
